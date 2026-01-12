@@ -1,0 +1,9 @@
+
+{
+  "name": "Nest Achievers Tuition Centre",
+  "description": "A premium educational platform for classes 1-10, offering personalized learning, expert guidance, and a growth-oriented environment.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

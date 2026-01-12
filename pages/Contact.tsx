@@ -1,0 +1,197 @@
+
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Phone, MapPin, Send, Facebook, Instagram, Youtube } from 'lucide-react';
+
+const Contact: React.FC = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+  };
+
+  const socialLinks = [
+    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/nestachievers/' },
+    { name: 'YouTube', icon: Youtube, url: 'https://www.youtube.com/@NestAchievers' },
+    { name: 'Facebook', icon: Facebook, url: 'https://www.facebook.com/share/1Be5pgVP1D/' },
+  ];
+
+  return (
+    <div className="min-h-screen bg-white py-8 sm:py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-block bg-primary/10 text-primary px-6 py-2 rounded-full font-black text-sm uppercase tracking-widest mb-4">
+            Nagpur Location
+          </div>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4 px-4 break-words">Start Your <span className="text-primary">Success Story</span></h1>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-medium px-4 break-words">Connect with Nagpur's premier coaching institute for IIT-JEE, NEET, and Board exams.</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="lg:col-span-1 space-y-8"
+          >
+            <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-[2.5rem] shadow-xl border border-gray-100 h-full">
+              <h3 className="text-2xl font-black mb-8 text-gray-900">Reach Us</h3>
+              
+              <div className="space-y-8">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-sm">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 font-black uppercase tracking-widest mb-1">Admissions Hotlines</p>
+                    <div className="space-y-1">
+                      <p className="text-lg font-black text-gray-900">+91 9049969555</p>
+                      <p className="text-lg font-black text-gray-900">+91 9767113503</p>
+                      <p className="text-lg font-black text-gray-800">+91 876543210</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-sm">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 font-black uppercase tracking-widest mb-1">Inquiry Email</p>
+                    <p className="text-sm sm:text-base md:text-lg font-black text-gray-900 break-all">nestachievers@gmail.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="bg-primary/10 p-4 rounded-2xl text-primary shadow-sm">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 font-black uppercase tracking-widest mb-1">Nagpur Center</p>
+                    <p className="text-sm sm:text-md font-bold text-gray-900 leading-relaxed break-words">
+                      PLOT NO. L-230, HOUSE NO 1288/D/230, <br />
+                      UTTAM KRUPA, MHADA LIG. COLONY, <br />
+                      NANDANWAN, NAGPUR – 440024 MH.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <p className="text-xs text-gray-400 font-black uppercase tracking-widest mb-4">Social Presence</p>
+                <div className="flex space-x-3">
+                  {socialLinks.map((item, i) => (
+                    <a 
+                      key={i} 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-white p-4 rounded-2xl text-gray-600 hover:bg-primary hover:text-white transition-all transform hover:-translate-y-2 shadow-sm border border-gray-100"
+                      title={item.name}
+                    >
+                      <item.icon size={22} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="lg:col-span-2"
+          >
+            <div className="bg-white p-4 sm:p-6 md:p-10 rounded-2xl sm:rounded-[2.5rem] shadow-2xl border border-gray-50 h-full">
+              <h3 className="text-2xl font-black mb-8 text-gray-900">Course Inquiry Form</h3>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Student's Name</label>
+                    <input 
+                      type="text" 
+                      required
+                      placeholder="e.g. Amit Kumar"
+                      className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-medium"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Current Class</label>
+                    <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                      <option>Class 7th</option>
+                      <option>Class 8th</option>
+                      <option>Class 9th</option>
+                      <option>Class 10th</option>
+                      <option>Class 11th</option>
+                      <option>Class 12th</option>
+                      <option>Repeat / Drop Year</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      required
+                      placeholder="+91"
+                      className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-medium"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Interested Exam</label>
+                    <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                      <option>IIT-JEE</option>
+                      <option>NEET</option>
+                      <option>CET / State Entrance</option>
+                      <option>CBSE / ICSE Boards</option>
+                      <option>Foundation Courses</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Your Message / Specific Query</label>
+                  <textarea 
+                    rows={4}
+                    placeholder="Tell us about your academic goals..."
+                    className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none resize-none font-medium"
+                  ></textarea>
+                </div>
+
+                <button 
+                  type="submit"
+                  disabled={submitted}
+                  className={`w-full py-5 rounded-2xl font-black text-lg flex items-center justify-center space-x-2 transition-all shadow-xl ${submitted ? 'bg-green-500 text-white' : 'bg-primary text-white hover:bg-opacity-90 hover:-translate-y-1'}`}
+                >
+                  {submitted ? (
+                    <span className="text-sm sm:text-base">Inquiry Sent! We will call you back.</span>
+                  ) : (
+                    <>
+                      <span className="text-sm sm:text-base">Submit Admission Inquiry</span>
+                      <Send size={20} />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Contact;
