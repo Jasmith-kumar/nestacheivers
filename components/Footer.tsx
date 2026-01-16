@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <img src={logoUrl} alt="Nest Achievers Nagpur" className="h-28 md:h-36 w-auto object-contain" />
             <p className="text-gray-500 leading-relaxed font-medium text-sm sm:text-base break-words">
-              Academic Coaching Nagpur - Nurturing students from Class 7th to 12th for IIT-JEE, NEET, and Board success.
+              Academic Coaching Nagpur - Nurturing students from Class 8th to 12th for IIT-JEE, NEET, and Board success.
             </p>
             <div className="flex space-x-3">
               <a href="https://www.instagram.com/nestachievers/" className="bg-gray-100 p-2 rounded-lg text-gray-500 hover:text-primary transition-colors">
@@ -51,8 +51,8 @@ const Footer: React.FC = () => {
               <li className="flex items-start space-x-3 text-gray-500">
                 <Phone size={18} className="text-primary mt-1 flex-shrink-0" />
                 <div className="text-sm font-bold">
-                  <span>+91 9049969555</span><br />
-                  <span>+91 9767113503</span>
+                  <span>+91 9767113503</span><br />
+                  <span>+91 9049969555</span>
                 </div>
               </li>
               <li className="flex items-center space-x-3 text-gray-500">
@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
                 <span className="text-xs font-bold leading-tight break-words">
                   PLOT NO. L-230, HOUSE NO 1288/D/230, <br />
                   UTTAM KRUPA, MHADA LIG. COLONY, <br />
-                  NANDANWAN, NAGPUR – 440024 MH.
+                  NANDANVAN, NAGPUR, MAHARASTRA – 440009
                 </span>
               </li>
             </ul>
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-gray-400 text-[10px] md:text-xs font-black uppercase tracking-widest px-4">
-          <p className="text-center md:text-left break-words">© 2024 Nest Achievers Academic Coaching Nagpur.</p>
+          <p className="text-center md:text-left break-words">© 2026 Nest Achievers Academic Coaching Nagpur.</p>
         </div>
       </div>
     </footer>

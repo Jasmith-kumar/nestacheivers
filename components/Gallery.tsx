@@ -5,12 +5,12 @@ import { Maximize2, X } from 'lucide-react';
 
 const Gallery: React.FC = () => {
   const images = [
-    { url: "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Interactive Math Session" },
-    { url: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop", category: "Events", title: "Collaborative Study" },
-    { url: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Engaged Learning" },
-    { url: "https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=800&auto=format&fit=crop", category: "Awards", title: "Science Discovery" },
-    { url: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop", category: "Events", title: "Creative Thinking" },
-    { url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Digital Learning" },
+    { url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Indian Classroom Environment" },
+    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop", category: "Study Materials", title: "Indian Board Books Collection" },
+    { url: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop", category: "Chemistry Lab", title: "Chemistry Class Session" },
+    { url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop", category: "Tech Classroom", title: "Digital Learning Classroom" },
+    { url: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Interactive Learning Session" },
+    { url: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop", category: "Study Materials", title: "CBSE & ICSE Board Books" },
   ];
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -48,6 +48,10 @@ const Gallery: React.FC = () => {
                 src={img.url} 
                 alt={img.title} 
                 className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=800&auto=format&fit=crop";
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                 <span className="text-primary text-xs font-bold uppercase tracking-widest mb-1">{img.category}</span>

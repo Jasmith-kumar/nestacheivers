@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
           >
             <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold mb-6 flex-wrap">
               <Sparkles size={14} className="sm:w-4 sm:h-4" />
-              <span className="break-words">Admissions Opening for 2024-25</span>
+              <span className="break-words">Admissions Opening for 2026-27</span>
             </div>
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight mb-4 break-words">
@@ -29,12 +29,15 @@ const Hero: React.FC = () => {
 
             <div className="space-y-4 mb-8">
               <div className="bg-primary/5 border-l-4 border-primary p-3 sm:p-4 rounded-r-xl">
-                <p className="text-lg sm:text-xl md:text-2xl font-black text-gray-900 break-words">🎓 Classes 7th to 12th</p>
+                <p className="text-lg sm:text-xl md:text-2xl font-black text-gray-900 break-words">🎓 Classes 8th to 12th</p>
               </div>
               
               <div className="flex flex-wrap gap-2 sm:gap-3">
-                <span className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-sm border border-gray-200 break-words">🏆 IIT-JEE | NEET (Main & Advanced)</span>
-                <span className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-sm border border-gray-200 break-words">📖 CBSE | ICSE | State Board | CET</span>
+                <span className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-sm border border-gray-200 break-words">🏆 IIT-JEE (Mains and Advance)</span>
+                <span className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-sm border border-gray-200 break-words">💉 NEET Preparation</span>
+                <span className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-sm border border-gray-200 break-words">📚 8th -10th (ICSE, CBSE, State Board)</span>
+                <span className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-sm border border-gray-200 break-words">🎯 11th and 12th (CET)</span>
+                <span className="bg-gray-100 text-gray-800 px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm shadow-sm border border-gray-200 break-words">🌟 Foundation Courses</span>
               </div>
             </div>
             
@@ -67,9 +70,13 @@ const Hero: React.FC = () => {
           >
             <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-[12px] border-white aspect-[4/5] md:aspect-square">
               <img 
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop" 
-                alt="Enthusiastic students learning" 
+                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop" 
+                alt="Indian students learning in classroom" 
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200&auto=format&fit=crop";
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent" />
             </div>

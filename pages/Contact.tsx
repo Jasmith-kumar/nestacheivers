@@ -5,6 +5,7 @@ import { Mail, Phone, MapPin, Send, Facebook, Instagram, Youtube } from 'lucide-
 
 const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [currentClass, setCurrentClass] = useState<string>('');
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,9 +56,8 @@ const Contact: React.FC = () => {
                   <div>
                     <p className="text-xs text-gray-400 font-black uppercase tracking-widest mb-1">Admissions Hotlines</p>
                     <div className="space-y-1">
-                      <p className="text-lg font-black text-gray-900">+91 9049969555</p>
                       <p className="text-lg font-black text-gray-900">+91 9767113503</p>
-                      <p className="text-lg font-black text-gray-800">+91 876543210</p>
+                      <p className="text-lg font-black text-gray-900">+91 9049969555</p>
                     </div>
                   </div>
                 </div>
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
                     <p className="text-sm sm:text-md font-bold text-gray-900 leading-relaxed break-words">
                       PLOT NO. L-230, HOUSE NO 1288/D/230, <br />
                       UTTAM KRUPA, MHADA LIG. COLONY, <br />
-                      NANDANWAN, NAGPUR – 440024 MH.
+                      NANDANVAN, NAGPUR, MAHARASTRA – 440009
                     </p>
                   </div>
                 </div>
@@ -128,14 +128,18 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Current Class</label>
-                    <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
-                      <option>Class 7th</option>
-                      <option>Class 8th</option>
-                      <option>Class 9th</option>
-                      <option>Class 10th</option>
-                      <option>Class 11th</option>
-                      <option>Class 12th</option>
-                      <option>Repeat / Drop Year</option>
+                    <select 
+                      value={currentClass}
+                      onChange={(e) => setCurrentClass(e.target.value)}
+                      className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700"
+                    >
+                      <option value="">Select Class</option>
+                      <option value="8th">Class 8th</option>
+                      <option value="9th">Class 9th</option>
+                      <option value="10th">Class 10th</option>
+                      <option value="11th">Class 11th</option>
+                      <option value="12th">Class 12th</option>
+                      <option value="repeat">Repeat / Drop Year</option>
                     </select>
                   </div>
                 </div>
@@ -150,16 +154,48 @@ const Contact: React.FC = () => {
                       className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-medium"
                     />
                   </div>
-                  <div>
-                    <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Interested Exam</label>
-                    <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
-                      <option>IIT-JEE</option>
-                      <option>NEET</option>
-                      <option>CET / State Entrance</option>
-                      <option>CBSE / ICSE Boards</option>
-                      <option>Foundation Courses</option>
-                    </select>
-                  </div>
+                  {/* Board Selection - Show for classes 8th, 9th, 10th */}
+                  {(currentClass === '8th' || currentClass === '9th' || currentClass === '10th') && (
+                    <div>
+                      <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Board</label>
+                      <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                        <option value="">Select Board</option>
+                        <option>ICSE</option>
+                        <option>CBSE</option>
+                        <option>State</option>
+                      </select>
+                    </div>
+                  )}
+                  {/* Interested Exam - Show for classes 11th, 12th */}
+                  {(currentClass === '11th' || currentClass === '12th') && (
+                    <div>
+                      <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Interested Exam</label>
+                      <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                        <option value="">Select Exam</option>
+                        <option>IIT-JEE Mains and Advance</option>
+                        <option>NEET</option>
+                        <option>CET</option>
+                        <option>Foundation</option>
+                        <option>CBSE</option>
+                        <option>State</option>
+                      </select>
+                    </div>
+                  )}
+                  {/* Show Interested Exam for Repeat/Drop Year or when no class selected */}
+                  {currentClass !== '8th' && currentClass !== '9th' && currentClass !== '10th' && currentClass !== '11th' && currentClass !== '12th' && currentClass !== '' && (
+                    <div>
+                      <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Interested Exam</label>
+                      <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                        <option value="">Select Exam</option>
+                        <option>IIT-JEE Mains and Advance</option>
+                        <option>NEET</option>
+                        <option>CET</option>
+                        <option>Foundation</option>
+                        <option>CBSE</option>
+                        <option>State</option>
+                      </select>
+                    </div>
+                  )}
                 </div>
 
                 <div>

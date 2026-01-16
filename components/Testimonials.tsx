@@ -7,24 +7,24 @@ const Testimonials: React.FC = () => {
   const reviews = [
     {
       name: "Mrs. Sharma",
-      role: "Parent (Class 8 Student)",
+      role: "Parent",
       text: "The individual attention my son receives at Nest Achievers is unmatched. His math scores improved from a C to an A within just one term!",
       rating: 5,
-      image: "https://picsum.photos/seed/p1/100/100"
+      image: "https://ui-avatars.com/api/?name=Mrs+Sharma&background=8c52ff&color=fff&size=100&bold=true"
     },
     {
       name: "Rahul Verma",
-      role: "Student (Class 10)",
+      role: "Student",
       text: "Nest Achievers makes complex science topics so easy to understand. The teachers are friendly and always ready to help with doubts.",
       rating: 5,
-      image: "https://picsum.photos/seed/p2/100/100"
+      image: "https://ui-avatars.com/api/?name=Rahul+Verma&background=8c52ff&color=fff&size=100&bold=true"
     },
     {
       name: "Mr. Kapoor",
-      role: "Parent (Class 4 Student)",
+      role: "Parent",
       text: "My daughter loves coming here. The environment is so encouraging. It's not just about studies, they teach values too.",
       rating: 5,
-      image: "https://picsum.photos/seed/p3/100/100"
+      image: "https://ui-avatars.com/api/?name=Mr+Kapoor&background=8c52ff&color=fff&size=100&bold=true"
     }
   ];
 
@@ -38,11 +38,11 @@ const Testimonials: React.FC = () => {
             viewport={{ once: true }}
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4 px-4 break-words"
           >
-            Voices of <span className="text-primary">Success</span>
+            Voices of Success <span className="text-primary">Survey</span>
           </motion.h2>
           <div className="h-1.5 w-24 bg-primary mx-auto rounded-full mb-6" />
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 break-words">
-            Hear from our community of happy parents and thriving students.
+            Hear from our community of happy people and thriving students.
           </p>
         </div>
 
@@ -75,6 +75,10 @@ const Testimonials: React.FC = () => {
                   src={review.image} 
                   alt={review.name} 
                   className="h-14 w-14 rounded-full border-4 border-white shadow-md"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(review.name)}&background=8c52ff&color=fff&size=100&bold=true`;
+                  }}
                 />
                 <div>
                   <h4 className="font-bold text-gray-900 group-hover:text-white transition-colors duration-500">{review.name}</h4>

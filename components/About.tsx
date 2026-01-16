@@ -12,13 +12,13 @@ const About: React.FC = () => {
     },
     {
       icon: <Milestone className="text-primary" size={32} />,
-      title: "Classes 7th - 12th",
-      description: "Foundation building from class 7th to advanced 12th grade coaching across all boards."
+      title: "Classes 8th - 12th",
+      description: "Foundation building from class 8th to advanced 12th grade coaching across all boards."
     },
     {
       icon: <BookOpen className="text-primary" size={32} />,
       title: "Multi-Board Coaching",
-      description: "Comprehensive support for CBSE, ICSE, State Board, and CET entrance examinations."
+      description: "Comprehensive support for ICSE, CBSE, State, and CET entrance examinations."
     },
     {
       icon: <Trophy className="text-primary" size={32} />,
@@ -41,7 +41,7 @@ const About: React.FC = () => {
           </motion.h2>
           <div className="h-1.5 w-24 bg-primary mx-auto rounded-full mb-6" />
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium px-4 break-words">
-            At Nest Achievers, we specialize in bridging the gap between standard schooling and competitive exam success for classes 7th to 12th.
+            At Nest Achievers, we specialize in bridging the gap between standard schooling and competitive exam success for classes 8th to 12th.
           </p>
         </div>
 
@@ -75,9 +75,13 @@ const About: React.FC = () => {
           >
             <div className="bg-primary/5 absolute -inset-6 rounded-[3rem] -rotate-1" />
             <img 
-              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop" 
-              alt="Students in classroom" 
+              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop" 
+              alt="Indian students in classroom" 
               className="relative rounded-[2rem] shadow-2xl w-full h-auto object-cover"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop";
+              }}
             />
           </motion.div>
 
@@ -89,15 +93,15 @@ const About: React.FC = () => {
           >
             <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-gray-900 italic break-words">"Building Foundations for Future Engineers & Doctors"</h3>
             <p className="text-base sm:text-lg text-gray-600 leading-relaxed break-words">
-              Nagpur's trusted destination for academic excellence. We provide a rigorous yet supportive environment where students from Class 7 onwards begin their journey toward JEE and NEET success.
+              Nagpur's trusted destination for academic excellence. We provide a rigorous yet supportive environment where students from Class 8 onwards begin their journey toward JEE and NEET success.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 "IIT-JEE Main & Advanced",
                 "NEET Preparation",
-                "CBSE & ICSE Boards",
-                "State Board & CET",
-                "Class 7th-10th Foundation",
+                "CBSE Boards",
+                "State & CET",
+                "Class 8th-10th Foundation",
                 "11th-12th Science Focus"
               ].map((item, i) => (
                 <div key={i} className="flex items-center space-x-2 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">

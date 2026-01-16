@@ -6,7 +6,7 @@ const Stats: React.FC = () => {
   const stats = [
     { value: "500+", label: "Happy Students" },
     { value: "15+", label: "Expert Tutors" },
-    { value: "10+", label: "Years Experience" },
+    { value: "10+", label: "Years of Experience in Coaching" },
     { value: "98%", label: "Result Rate" }
   ];
 
@@ -24,7 +24,7 @@ const Stats: React.FC = () => {
               className="text-center"
             >
               <div className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2 break-words">{stat.value}</div>
-              <div className="text-white/80 font-medium text-sm sm:text-base md:text-lg break-words px-2">{stat.label}</div>
+              <div className="text-white/80 font-medium text-xs sm:text-sm md:text-base break-words px-1">{stat.label}</div>
             </motion.div>
           ))}
         </div>
