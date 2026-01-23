@@ -38,12 +38,12 @@ const Contact: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-medium px-4 break-words">Connect with Nagpur's premier coaching institute for IIT-JEE, NEET, and Board exams.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="lg:col-span-1 space-y-8"
+            className="lg:col-span-2 space-y-8"
           >
             <div className="bg-gray-50 p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-[2.5rem] shadow-xl border border-gray-100 h-full">
               <h3 className="text-2xl font-black mb-8 text-gray-900">Reach Us</h3>
@@ -111,7 +111,7 @@ const Contact: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            className="lg:col-span-2"
+            className="lg:col-span-3"
           >
             <div className="bg-white p-4 sm:p-6 md:p-10 rounded-2xl sm:rounded-[2.5rem] shadow-2xl border border-gray-50 h-full">
               <h3 className="text-2xl font-black mb-8 text-gray-900">Course Inquiry Form</h3>

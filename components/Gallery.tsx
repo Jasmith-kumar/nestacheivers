@@ -5,12 +5,12 @@ import { Maximize2, X } from 'lucide-react';
 
 const Gallery: React.FC = () => {
   const images = [
-    { url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Indian Classroom Environment" },
-    { url: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop", category: "Study Materials", title: "Indian Board Books Collection" },
-    { url: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop", category: "Chemistry Lab", title: "Chemistry Class Session" },
-    { url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop", category: "Tech Classroom", title: "Digital Learning Classroom" },
-    { url: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Interactive Learning Session" },
-    { url: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop", category: "Study Materials", title: "CBSE & ICSE Board Books" },
+    { url: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop", category: "Chemistry Lab", title: "Advanced Chemistry Laboratory" },
+    { url: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=800&auto=format&fit=crop", category: "Physics", title: "Physics Equations & Formulas" },
+    { url: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800&auto=format&fit=crop", category: "Classroom", title: "Professional Coaching Classroom" },
+    { url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800&auto=format&fit=crop", category: "E-Classroom", title: "Smart Digital Classroom" },
+    { url: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop", category: "Study Materials", title: "JEE & NEET Study Books" },
+    { url: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=800&auto=format&fit=crop", category: "Coaching Center", title: "Lecture Hall Session" },
   ];
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -50,7 +50,7 @@ const Gallery: React.FC = () => {
                 className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=800&auto=format&fit=crop";
+                  target.src = "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop";
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">

@@ -75,12 +75,12 @@ const About: React.FC = () => {
           >
             <div className="bg-primary/5 absolute -inset-6 rounded-[3rem] -rotate-1" />
             <img 
-              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop" 
-              alt="Indian students in classroom" 
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" 
+              alt="Senior students group study session" 
               className="relative rounded-[2rem] shadow-2xl w-full h-auto object-cover"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=800&auto=format&fit=crop";
+                target.src = "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop";
               }}
             />
           </motion.div>
