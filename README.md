@@ -10,11 +10,21 @@ View your app in AI Studio: https://ai.studio/apps/temp/1
 
 ## Run Locally
 
-**Prerequisites:**  Node.js
+**Prerequisites:** Node.js
 
+1. **Install dependencies** (from project root):  
+   `npm install`  
+   This installs frontend and server dependencies (server is installed automatically).
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+2. **Run everything:**  
+   `npm run dev`  
+   This starts **both** the frontend and the server:
+   - **Frontend** at http://localhost:3000
+   - **Server** at http://localhost:5000
+
+3. **Dashboard:** Go to **/dashboard**, sign in with **admin** / **admin123** to view contact form submissions.
+
+**Optional:**
+- **MongoDB:** To keep submissions across server restarts, create `server/.env` and set `MONGO_URI` to your MongoDB connection string. Without it, submissions are stored in memory (reset when the server restarts).
+- **Dashboard login:** Set `ADMIN_USERNAME` and `ADMIN_PASSWORD` in `server/.env` to change the dashboard credentials.
+- **Chatbot:** Set `GEMINI_API_KEY` in `.env` or `.env.local` for the chatbot.

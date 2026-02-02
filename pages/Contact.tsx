@@ -5,16 +5,51 @@ import { Mail, Phone, MapPin, Send, Facebook, Instagram, Youtube } from 'lucide-
 
 const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [currentClass, setCurrentClass] = useState<string>('');
+  const [studentName, setStudentName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [board, setBoard] = useState('');
+  const [interestedExam, setInterestedExam] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setSubmitError(null);
+    const payload = {
+      studentName: studentName.trim(),
+      currentClass,
+      phone: phone.trim(),
+      board: (currentClass === '8th' || currentClass === '9th' || currentClass === '10th') ? board : '',
+      interestedExam: (currentClass === '11th' || currentClass === '12th' || currentClass === 'repeat') ? interestedExam : '',
+      message: message.trim(),
+    };
+    try {
+      const res = await fetch('/api/submissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setSubmitError(data.error || 'Failed to submit. Please try again.');
+        return;
+      }
+      setSubmitted(true);
+      setStudentName('');
+      setCurrentClass('');
+      setPhone('');
+      setBoard('');
+      setInterestedExam('');
+      setMessage('');
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch {
+      setSubmitError('Network error. Please try again.');
+    }
   };
 
   const socialLinks = [
@@ -122,6 +157,8 @@ const Contact: React.FC = () => {
                     <input 
                       type="text" 
                       required
+                      value={studentName}
+                      onChange={(e) => setStudentName(e.target.value)}
                       placeholder="e.g. Amit Kumar"
                       className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-medium"
                     />
@@ -150,6 +187,8 @@ const Contact: React.FC = () => {
                     <input 
                       type="tel" 
                       required
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91"
                       className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-medium"
                     />
@@ -158,11 +197,11 @@ const Contact: React.FC = () => {
                   {(currentClass === '8th' || currentClass === '9th' || currentClass === '10th') && (
                     <div>
                       <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Board</label>
-                      <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                      <select value={board} onChange={(e) => setBoard(e.target.value)} className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
                         <option value="">Select Board</option>
-                        <option>ICSE</option>
-                        <option>CBSE</option>
-                        <option>State</option>
+                        <option value="ICSE">ICSE</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="State">State</option>
                       </select>
                     </div>
                   )}
@@ -170,29 +209,29 @@ const Contact: React.FC = () => {
                   {(currentClass === '11th' || currentClass === '12th') && (
                     <div>
                       <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Interested Exam</label>
-                      <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                      <select value={interestedExam} onChange={(e) => setInterestedExam(e.target.value)} className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
                         <option value="">Select Exam</option>
-                        <option>IIT-JEE Mains and Advance</option>
-                        <option>NEET</option>
-                        <option>CET</option>
-                        <option>Foundation</option>
-                        <option>CBSE</option>
-                        <option>State</option>
+                        <option value="IIT-JEE Mains and Advance">IIT-JEE Mains and Advance</option>
+                        <option value="NEET">NEET</option>
+                        <option value="CET">CET</option>
+                        <option value="Foundation">Foundation</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="State">State</option>
                       </select>
                     </div>
                   )}
-                  {/* Show Interested Exam for Repeat/Drop Year or when no class selected */}
-                  {currentClass !== '8th' && currentClass !== '9th' && currentClass !== '10th' && currentClass !== '11th' && currentClass !== '12th' && currentClass !== '' && (
+                  {/* Show Interested Exam for Repeat/Drop Year */}
+                  {currentClass === 'repeat' && (
                     <div>
                       <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Interested Exam</label>
-                      <select className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
+                      <select value={interestedExam} onChange={(e) => setInterestedExam(e.target.value)} className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none font-bold text-gray-700">
                         <option value="">Select Exam</option>
-                        <option>IIT-JEE Mains and Advance</option>
-                        <option>NEET</option>
-                        <option>CET</option>
-                        <option>Foundation</option>
-                        <option>CBSE</option>
-                        <option>State</option>
+                        <option value="IIT-JEE Mains and Advance">IIT-JEE Mains and Advance</option>
+                        <option value="NEET">NEET</option>
+                        <option value="CET">CET</option>
+                        <option value="Foundation">Foundation</option>
+                        <option value="CBSE">CBSE</option>
+                        <option value="State">State</option>
                       </select>
                     </div>
                   )}
@@ -202,11 +241,16 @@ const Contact: React.FC = () => {
                   <label className="block text-xs font-black text-gray-400 uppercase tracking-widest mb-2">Your Message / Specific Query</label>
                   <textarea 
                     rows={4}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     placeholder="Tell us about your academic goals..."
                     className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none resize-none font-medium"
-                  ></textarea>
+                  />
                 </div>
 
+                {submitError && (
+                  <p className="text-red-600 text-sm font-medium" role="alert">{submitError}</p>
+                )}
                 <button 
                   type="submit"
                   disabled={submitted}
