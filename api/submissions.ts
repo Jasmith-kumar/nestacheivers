@@ -7,9 +7,7 @@ let conn: typeof mongoose | null = null;
 async function connectMongo() {
   if (conn && mongoose.connection.readyState === 1) return conn;
   const uri = process.env.MONGO_URI;
-  if (!uri) {
-    throw new Error('MONGO_URI is not set');
-  }
+  if (!uri) return null;
   conn = await mongoose.connect(uri);
   return conn;
 }
@@ -62,7 +60,12 @@ export default async function handler(
     }
 
     try {
-      await connectMongo();
+      const connected = await connectMongo();
+      if (!connected) {
+        // No Mongo configured in production: accept the submission but do not persist.
+        console.warn('POST /api/submissions: MONGO_URI not set, skipping persistence.');
+        return res.status(201).json({ success: true, id: null });
+      }
       const doc = await FormSubmission.create({
         studentName,
         currentClass,
@@ -74,11 +77,7 @@ export default async function handler(
       return res.status(201).json({ success: true, id: doc._id });
     } catch (err) {
       console.error('Vercel POST /api/submissions error:', err);
-      const message =
-        process.env.MONGO_URI
-          ? 'Failed to save submission'
-          : 'MONGO_URI is not configured on the server';
-      return res.status(500).json({ error: message });
+      return res.status(500).json({ error: 'Failed to save submission' });
     }
   }
 
@@ -92,18 +91,19 @@ export default async function handler(
     }
 
     try {
-      await connectMongo();
+      const connected = await connectMongo();
+      if (!connected) {
+        // No Mongo configured: allow login but return empty list.
+        console.warn('GET /api/submissions: MONGO_URI not set, returning empty list.');
+        return res.status(200).json([]);
+      }
       const submissions = await FormSubmission.find()
         .sort({ createdAt: -1 })
         .lean();
       return res.status(200).json(submissions);
     } catch (err) {
       console.error('Vercel GET /api/submissions error:', err);
-      const message =
-        process.env.MONGO_URI
-          ? 'Failed to load submissions'
-          : 'MONGO_URI is not configured on the server';
-      return res.status(500).json({ error: message });
+      return res.status(500).json({ error: 'Failed to load submissions' });
     }
   }
 
