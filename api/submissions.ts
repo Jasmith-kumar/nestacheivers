@@ -1,5 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import mongoose, { Schema, models, model } from 'mongoose';
+import mongoose from 'mongoose';
+
+const { Schema, model, models } = mongoose;
 
 // Reuse connection across invocations
 let conn: typeof mongoose | null = null;
